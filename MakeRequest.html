@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title> Library Book Request </title>
+</head>
+
+<body>
+
+
+    <h1 style="text-align:center;"> Book Web Services </h1>
+
+
+
+
+
+
+
+    <form method="POST" action="MakeRequest.php">
+
+
+        <h2 style="text-align:center;"> Request a Book </h2>
+        <table>
+            <tr>
+                <td>NewBookISBN:</td>
+                <td><input type="text" name="NewBookISBN" maxlength="25" required /></td>
+            </tr>
+            <tr>
+                <td>Title:</td>
+                <td><input type="text" name="Title" maxlength="25" required /></td>
+            </tr>
+            <tr>
+                <td><input type="number" name="Filled" hidden value="0" maxlength="20" />
+            </tr>
+            <tr>
+                <td>Rating:</td>
+                <td><input type="text" name="Rating" maxlength="100"></td>
+            </tr>
+            <tr>
+                <td>DateRequested:</td>
+                <td><input type="date" name="DateRequested" required></td>
+            </tr>
+            <tr>
+                <td>CardNumber:</td>
+                <td><input type="text" name="CardNumber" maxlength="50" required></td>
+            </tr>
+
+
+        </table>
+
+
+
+        <p> <input type="submit" value="Click to Add a BOOK" /></p>
+
+
+
+    </form>
+
+
+
+
+
+
+    <a href="Management.html">Return to main menu</a>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title> Manage Patron </title>
+</head>
+
+<body>
+
+
+    <h1 style="text-align:center;"> Book Web Services </h1>
+
+    <!-- <form method="GET" action="/ManagePatron.php">
+
+
+        <h2 style="text-align:center;"> Manage Patron </h2>
+        <label for="CardNumber">CardNumber:</label>
+        <input type="text" id="CardNumber" name="CardNumber"><br><br>
+
+
+        <p> <input type="submit" value="Click to remove book" /></p>
+
+
+
+    </form> -->
+
+
+    <form method="POST" action="ManagePatron.php">
+
+
+        <h2 style="text-align:center;"> Add a Patron </h2>
+        <table>
+            <tr>
+                <td>CardNumber:</td>
+                <td><input type="text" name="CardNumber" maxlength="25" required /></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="Name" maxlength="25" required /></td>
+            </tr>
+            <tr>
+                <td>Active</td>
+                <td><input type="checkbox" name="Active" maxlength="20" />
+                </td>
+            </tr>
+            <tr>
+                <td>PhoneNumber:</td>
+                <td><input type="number" name="PhoneNumber" maxlength="100"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" name="Email" maxlength="50" required></td>
+            </tr>
+            <tr>
+                <td>HasOverdue:</td>
+                <td>
+                    <input type="checkbox" name="HasOverdue" maxlength="100" required></td>
+            </tr>
+
+
+
+        </table>
+
+
+
+        <p>
+            <input value="Click to Add/Edit(if exitsts) a Patron " type="submit" />
+        </p>
+
+
+
+    </form>
+
+
+
+
+
+
+    <a href="Management.html ">Return to main menu</a>
+
+</body>
+
+</html>
