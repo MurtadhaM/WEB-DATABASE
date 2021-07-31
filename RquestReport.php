@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title> Find Book </title>
+	<title> Requests Book </title>
 </head>
 
 <body>
@@ -56,9 +56,8 @@ font-size: 16px;
 
 </a>
 
-<h1 style="text-align:center;">  Book Requests Report </h1>
+<h1 style="text-align:center;">  Book Request Report </h1>
 
-<h2 style="text-align:center;"> Report Results: Book Requests Report </h2>
 
 <?php error_reporting (E_ALL ^ E_NOTICE); 
 $server='127.0.0.1';
@@ -87,12 +86,11 @@ from BOOK b, ORDER_TBL ot, PATRON p
 where b.ISBN = ot.ISBN
 and ot.CardNumber = p.CardNumber
 and DueDate < sysdate();";
-
 // Run the query
 $result = mysqli_query($conn,$query);
 
 if (mysqli_error($conn)) 
-	{die("MySQL error: ".mysqli_error($conn));}
+	{die("MySQL error: ".mysqli_error($conn));} 
 
 // IF the query returned any results...
 if (mysqli_num_rows($result) > 0) {

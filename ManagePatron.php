@@ -57,6 +57,12 @@ $Active = 1;
 
 
 
+if($HasOverdue == 'on'){
+    $HasOverdue = 1;
+    } else {
+        $HasOverdue = 0;
+    }
+    
 
 // Base search string includes join statement and pet name search criteria
 

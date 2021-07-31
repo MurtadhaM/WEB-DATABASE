@@ -58,7 +58,6 @@ font-size: 16px;
 
 <h1 style="text-align:center;">  Book Stock Report </h1>
 
-<h2 style="text-align:center;"> Report Results: Book Stock Report </h2>
 
 <?php error_reporting (E_ALL ^ E_NOTICE); 
 $server='127.0.0.1';
@@ -89,6 +88,7 @@ where b.NumberOfCopies = 0
 and b.Title = n.Title
  and b.isbn = ot.isbn
 group by b.Title, b.Author, b.ISBN, Publisher, Format, NumberOfCopies;";
+
 
 // Run the query
 $result = mysqli_query($conn,$query);
