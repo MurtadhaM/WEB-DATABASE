@@ -3,28 +3,91 @@
 
 
 <head>
+    <style>
+        html {
+            margin-left: -60px;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            margin: auto;
+            width: 20%;
+        }
+        
+        button {
+            width: 500px;
+            margin-left: -150px;
+        }
+        
+        section,
+        form {}
+        
+        h1,
+        h2,
+        form {
+            display: inline-block;
+        }
+        
+        input {
+            display: block;
+            padding: 30px, 30px;
+            padding-bottom: 5px;
+            margin-bottom: 40px;
+        }
+    </style>
     <title> Library Book Lookup </title>
 </head>
 
 <body>
 
+    <a style=" 
+    
+    " href="Patron.html">
 
-    <h1 style="text-align:center;"> Patron Web Services </h1>
+        <button style="background-color: #4CAF50; 
+            border: none;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    "> Back to Patron's Menu  </button>
+
+    </a>
+
+    <h1> Patron Web Services </h1>
 
     <form method="POST" action="BookLookup.php">
 
 
-        <h2 style="text-align:center;"> Find a Book </h2>
-        <td><input type="text" name="bookname" maxlength="50" required></td>
 
+        <h1>Search Book </h1>
 
+        <section class="TextBox">
 
-        <p> <input type="submit" value="Click to submit" /></p>
+            <input type="text" name="bookname" maxlength="50"></section>
+
+        <a href="BookCheck.php">
+
+            <button style="background-color: #4CAF50; 
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+
+        "> Search Books Catalog </button>
+
+        </a>
+
 
     </form>
 
 
-    <a href="Patron.html">Return to main menu</a>
+
 
 </body>
 

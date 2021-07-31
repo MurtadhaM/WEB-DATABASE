@@ -4,55 +4,102 @@
 
 <head>
     <title> Library Book Request </title>
+    <style>
+        html {
+            margin-left: 35%;
+            padding: 0;
+        }
+        
+        tr {
+            padding-left: 12px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            list-style: none;
+            cursor: pointer;
+        }
+        
+        td {
+            margin-left: -30px;
+        }
+        
+        input {
+            margin-left: 20%;
+        }
+        
+        table {
+            margin-left: -5%;
+        }
+    </style>
 </head>
 
 <body>
+    <a style=" 
+    
+    " href="Patron.html">
+
+        <button style="background-color: #4CAF50; 
+            border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    "> Back to Patron's Menu </button>
+
+    </a>
 
 
-    <h1 style="text-align:center;"> Book Web Services </h1>
+
+    <h1> Manage Requests </h1>
 
 
 
 
 
 
+    <form method="POST" action="ManageRequests.php">
 
-    <form method="POST" action="MakeRequest.php">
 
-
-        <h2 style="text-align:center;"> Request a Book </h2>
         <table>
             <tr>
-                <td>NewBookISBN:</td>
+                <td><input type="number" name="RequestID" maxlength="25" hidden value="1" /></td>
+            </tr>
+            <tr>
+                <td>ISBN:</td>
                 <td><input type="text" name="NewBookISBN" maxlength="25" required /></td>
             </tr>
             <tr>
-                <td>Title:</td>
-                <td><input type="text" name="Title" maxlength="25" required /></td>
+                <td>Title</td>
+                <td><input type="text" name="Title" maxlength="20" />
+                </td>
             </tr>
             <tr>
-                <td><input type="number" name="Filled" hidden value="0" maxlength="20" />
+                <td>Genre:</td>
+                <td><input type="text" name="Genre" maxlength="100"></td>
             </tr>
             <tr>
-                <td>Rating:</td>
-                <td><input type="text" name="Rating" maxlength="100"></td>
+                <td><input type="checkbox" hidden name="Filled" maxlength="0"></td>
             </tr>
             <tr>
                 <td>DateRequested:</td>
-                <td><input type="date" name="DateRequested" required></td>
+                <td>
+                    <input type="date" name="DateRequested" maxlength="100" required></td>
             </tr>
             <tr>
-                <td>CardNumber:</td>
-                <td><input type="text" name="CardNumber" maxlength="50" required></td>
+
+                <input type="number" name="CardNumber" hidden value="1" maxlength="100"></td>
             </tr>
+
 
 
         </table>
 
 
 
-        <p> <input type="submit" value="Click to Add a BOOK" /></p>
+        <button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; ">
 
+            Add Book (Edit if exits) </button>
 
 
     </form>
@@ -62,7 +109,6 @@
 
 
 
-    <a href="Management.html">Return to main menu</a>
 
 </body>
 
