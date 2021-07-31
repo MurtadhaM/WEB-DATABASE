@@ -17,34 +17,40 @@
 
 
 
-    <form method="POST" action="MakeRequest.php">
+    <form method="POST" action="ManageRequests.php">
 
 
-        <h2 style="text-align:center;"> Request a Book </h2>
+        <h2 style="text-align:center;"> Manage Requests </h2>
         <table>
+            <tr>
+                <td><input type="number" name="RequestID" maxlength="25" hidden value="1" /></td>
+            </tr>
             <tr>
                 <td>NewBookISBN:</td>
                 <td><input type="text" name="NewBookISBN" maxlength="25" required /></td>
             </tr>
             <tr>
-                <td>Title:</td>
-                <td><input type="text" name="Title" maxlength="25" required /></td>
+                <td>Title</td>
+                <td><input type="text" name="Title" maxlength="20" />
+                </td>
             </tr>
             <tr>
-                <td><input type="number" name="Filled" hidden value="0" maxlength="20" />
+                <td>Genre:</td>
+                <td><input type="text" name="Genre" maxlength="100"></td>
             </tr>
             <tr>
-                <td>Rating:</td>
-                <td><input type="text" name="Rating" maxlength="100"></td>
+                <td><input type="checkbox" hidden name="Filled" maxlength="0"></td>
             </tr>
             <tr>
                 <td>DateRequested:</td>
-                <td><input type="date" name="DateRequested" required></td>
+                <td>
+                    <input type="date" name="DateRequested" maxlength="100" required></td>
             </tr>
             <tr>
-                <td>CardNumber:</td>
-                <td><input type="text" name="CardNumber" maxlength="50" required></td>
+
+                <input type="number" name="CardNumber" hidden value="1" maxlength="100"></td>
             </tr>
+
 
 
         </table>

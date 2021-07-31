@@ -3,22 +3,33 @@
 
 
 <head>
-    <title> Check Book </title>
+    <title> Check Book In or Out </title>
 </head>
 <style>
-    <!-- 
-    ADD YOUR CSS HERE
-    -->
+
 </style>
 
 <body>
 
-    <td><input type="number" name="CustomerNumber" maxlength="52130" required></td>
+    <a style="  margin-left:44%; 
+    
+    " href="Patron.html">
 
+        <button style="background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    "> Return to main menu </button>
+
+    </a>
     <h1 style="text-align:center;"> My Books </h1>
     <a style="  margin-left:44%; 
     
-    " href="BookCheck.php?CustomerNumber=1">
+    " href="BookCheck.php">
 
         <button style="background-color: #4CAF50; 
     border: none;
@@ -31,18 +42,42 @@
     "> Show My Books </button>
 
     </a>
-    <form method="POST" action="BookCheck.php">
+    <!-- <form method="POST" action="BookCheck.php">
 
 
-        <h2 style="text-align:center;"> Find a Book </h2>
-        <td><input type="text" name="bookname" maxlength="50" required></td>
+        <h2 style="text-align:center;"> List Books </h2>
 
-        <p> <input type="submit" value="Click to submit" /></p>
+        <p> <button style="background-color: #4CAF50; 
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            "> Show My Books </button>
+
+            <input type="submit" />
+
+
+            <form method="Get" action="BookCheck.php">
+
+
+
+        </p>
+
+        </form> -->
+
+    <form form style="  margin-left:44%;  margin-top:100px;" method="POST" action="BookCheck.php">
+        <a>
+
+            <button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; ">
+
+                 SHOW CATALOG </button>
+
+        </a>
 
     </form>
-
-
-    <a href="Patron.html">Return to main menu</a>
 
 </body>
 

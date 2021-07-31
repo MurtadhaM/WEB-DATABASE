@@ -1,7 +1,6 @@
-
 <html>
 <head>
-	<title> Manage Book </title>
+	<title> Manage Requests </title>
 </head>
 
 <body>
@@ -26,14 +25,9 @@ font-size: 16px;
 
 </a>
 
-<h1 style="text-align:center;"> Manage Book </h1>
+<h1 style="text-align:center;"> Manage Requests </h1>
 
-<h2 style="text-align:center;"> Remove Results: Remove a Book </h2>
-<?php error_reporting (E_ALL ^ E_NOTICE); 
-$cookie_name = "CustomerNumber";
-$cookie_value = rand(5, 1000);
-setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-?>
+
 <?php error_reporting (E_ALL ^ E_NOTICE); 
 $server='127.0.0.1';
 $username='admin';
@@ -47,43 +41,76 @@ if (!$conn) {die( "Connection failed: " . mysqli_connect_error());}
 
 //get the data
 
+$RequestID = mysqli_real_escape_string($conn, $_POST['RequestID']);
 $NewBookISBN = mysqli_real_escape_string($conn, $_POST['NewBookISBN']);
 $Title = mysqli_real_escape_string($conn, $_POST['Title']);
 $Genre = mysqli_real_escape_string($conn, $_POST['Genre']);
 $Filled = mysqli_real_escape_string($conn, $_POST['Filled']);
 $DateRequested = mysqli_real_escape_string($conn, $_POST['DateRequested']);
-$CardNumber = mysqli_real_escape_string($conn, $_POST['CardNumber']);
+//$CardNumber = mysqli_real_escape_string($conn, $_POST['CardNumber']);
 
 
 
 
-$query = "INSERT INTO team02.NEWBOOKREQUEST   VALUES (null,'$NewBookISBN', '$Title', '$Genre',$Filled,'$DateRequested' , '$CardNumber');";
+
+if($Filled == 'on'){
+    $Filled = 1;
+    } else {
+        $Filled = 0;
+    }
+    
+
+// Base search string includes join statement and pet name search criteria
+
+
+
+$query = "INSERT INTO team02.NEWBOOKREQUEST (RequestID, NewBookISBN, Title, Genre, Filled, DateRequested, CardNumber) VALUES ($RequestID, '$NewBookISBN', '$Title', '$Genre', $Filled, '$DateRequested', $CardNumber);";
+
 
 $result = mysqli_query($conn,$query);
-if (mysqli_error($conn)) 
-	{die("MySQL error: ".mysqli_error($conn));}
+if (mysqli_error($conn)) {
+    $CardNumber=$_COOKIE['CustomerID'];
+    $query = "UPDATE team02.NEWBOOKREQUEST t SET t.NewBookISBN = '$NewBookISBN', 
+    t.Title = '$Title', t.Genre= '$Genre', t.Filled = 0, t.DateRequested = $DateRequested,
+     t.CardNumber = $CardNumber WHERE t.RequestID = '$RequestID'";
+
+    $result = mysqli_query($conn,$query);
+
+    if (mysqli_error($conn)) {
+    
+
+        die("MySQL error: ".mysqli_error($conn));
+    
+    
+    } 
+
+
+}
+
+
+
     if ($conn )
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-
-            echo "Removed the book Successfully!";
+            echo "Added/Edited the book Successfully!";
 
         
-        } else {
-            echo "Added the book Successfully!";
-
-        }
         
     // First create a table, with column headings
 
     echo "</table>";
 } 
-else {    echo "Adding failed, check your data!.";   }
+else {    echo "Adding/Editing failed, check your data!.";   }
+
+
+
+
+
 
 // Always remember to close the connection to the database when you're done!
 mysqli_close($conn);
 
 ?>
+
 
 
 </body>

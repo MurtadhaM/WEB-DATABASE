@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title> Find Book </title>
+	<title> Book Transaction </title>
 </head>
 
 <body>
@@ -56,15 +56,17 @@ font-size: 16px;
 
 </a>
 
-<h1 style="text-align:center;"> Find Book </h1>
+<h1 style="text-align:center;"> Book Transaction </h1>
 
-<h2 style="text-align:center;"> Search Results: Find a Book </h2>
+<h2 style="text-align:center;"> Book Inquery </h2>
 
 <?php error_reporting (E_ALL ^ E_NOTICE); 
 $server='127.0.0.1';
 $username='admin';
 $password='toor';
 $dbname='team02';
+$CustomerID=$_COOKIE['CustomerID'];
+
 
 // Create connection to a database server.
 $conn = mysqli_connect($server, $username, $password, $dbname);
@@ -79,10 +81,38 @@ if (!$conn) {die( "Connection failed: " . mysqli_connect_error());}
 
 $ESCpetname = mysqli_real_escape_string($conn, $_GET['ISBN']);
 $bookname = mysqli_real_escape_string($conn, $_GET['ISBN']);
-$LIST = mysqli_real_escape_string($conn, $_GET['ISBN']);
+$ISBN = mysqli_real_escape_string($conn, $_GET['ISBN']);
+$Method = mysqli_real_escape_string($conn, $_GET['Method']);
 
 //FOR SEARCH AND SELECT
 $ESCbook = mysqli_real_escape_string($conn, $_POST['bookname']);
+
+
+if($Method==="ADD"){
+    //TO LIST THE BOOKS
+        $num = rand(1,10055600);
+       $CustomerID=$_COOKIE['CustomerID'];
+
+       $query="SET FOREIGN_KEY_CHECKS=0;";
+    mysqli_query($conn,$query);
+    $query = "INSERT INTO ORDER_TBL VALUES ($num, CURRENT_DATE, '$CustomerID', DATE_ADD(CURRENT_DATE, INTERVAL  1 MONTH ), 0, '$ISBN'); ";
+    mysqli_query($conn,$query);
+
+    $query="SET FOREIGN_KEY_CHECKS=1;";
+    mysqli_query($conn,$query);
+
+    echo "Book Added!";
+$result = mysqli_query($conn,$query);
+
+if (mysqli_error($conn)) 
+	{die("MySQL error: ".mysqli_error($conn));}
+    echo "ADDED A BOOK";
+    exit();
+
+
+    } 
+    
+ 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -93,13 +123,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ISBN = mysqli_real_escape_string($conn, $_GET['ISBN']);
 $CustomerNumber = mysqli_real_escape_string($conn, $_GET['CustomerNumber']);
 
-if($ISBN>0){
+if($Method==="ADD"){
 //TO LIST THE BOOKS
     $num = rand(1,10000);
     $selectpart = "INSERT INTO team02.ORDER_TBL
     VALUES ($num, CURRENT_DATE, 1, DATE_ADD(CURRENT_DATE, INTERVAL  1 MONTH ), 0, '$ISBN'); ";
     $query  = "INSERT INTO team02.ORDER_TBL
     VALUES ($num, CURRENT_DATE, 1, DATE_ADD(CURRENT_DATE, INTERVAL  1 MONTH ), 0, '$ISBN'); ";
+    
 } else {    
 
     $query  = "SELECT * from BOOK where Title LIKE '%$ESCbook%'";
@@ -114,7 +145,7 @@ if (mysqli_error($conn))
     while($row = mysqli_fetch_assoc($result)) {
         $myBook = $row['ISBN'];
         echo   "<ul><li>
-        <a href='?ISBN=".$row["ISBN"]."'> ".$row["Title"]."</a>
+        <a href='?ISBN=".$row["ISBN"]."&Method=ADD'>".$row['Title']."</a>
         </li>";
 
         echo "</ul>";
@@ -146,15 +177,24 @@ AND CardNumber = '123151111';
 $ISBN = mysqli_real_escape_string($conn, $_GET['ISBN']);
 $CustomerNumber = mysqli_real_escape_string($conn, $_GET['CustomerNumber']);
 
-if($ISBN>0){
+if($ISBN>0 && $Method==="Delete"){
 //TO LIST THE BOOKS
-    $num = rand(1,10000);
-    $selectpart = "INSERT INTO team02.ORDER_TBL
-    VALUES ($num, CURRENT_DATE, 1, DATE_ADD(CURRENT_DATE, INTERVAL  1 MONTH ), 0, '$ISBN'); ";
-    $query  = "INSERT INTO team02.ORDER_TBL
-    VALUES ($num, CURRENT_DATE, 1, DATE_ADD(CURRENT_DATE, INTERVAL  1 MONTH ), 0, '$ISBN'); ";
-    echo $query;
-} else {    
+
+    
+    //DISABLING THE KEY CONSTRAINTS
+    $query="SET FOREIGN_KEY_CHECKS=0;";
+    mysqli_query($conn,$query);
+    $query = "DELETE FROM ORDER_TBL WHERE ISBN = '$ISBN'; ";
+    mysqli_query($conn,$query);
+
+    $query="SET FOREIGN_KEY_CHECKS=1;";
+    mysqli_query($conn,$query);
+
+    echo "Book Deleted!";
+    exit();
+
+} 
+else {    
 
     $query  = "SELECT * from BOOK where Title LIKE '%$ESCbook%'";
 
@@ -179,6 +219,7 @@ if ($result > 1) {
     // in the HTML table for each row in $result
     while($row = mysqli_fetch_assoc($result)) {
         $myBook = $row['ISBN'];
+  
         echo   "<ul><li>
         <a href='?ISBN=".$row["ISBN"]."'> ".$row["Title"]."</a>
         </li>";
@@ -205,7 +246,39 @@ if ($result > 1) {
 // OTHERWISE tell the user there were no results
 }
  else {
-$query="SELECT Title From BOOK b join ORDER_TBL OT on b.ISBN = OT.ISBN where CardNumber = $CustomerNumber;";
+
+
+        /* !!!: CHECKING IS ISBN REMOVE */
+
+
+    if($ISBN>2){
+        $query="DELETE FROM `ORDER_TBL` WHERE `ORDER_TBL`.`ISBN` = $ISBN";
+$result = mysqli_query($conn,$query);
+if (mysqli_error($conn)) 
+	{die("MySQL error: ".mysqli_error($conn));
+    
+    echo "You DO not have this book under your account";
+
+
+    
+    } 
+    else if($_SERVER['REQUEST_METHOD'] === 'GET' && $Method>0) {   
+
+
+        while($row = mysqli_fetch_assoc($result)) {
+           echo "Deleted the book";
+        }
+    }
+
+    /* !!!: THIS IS WHERE THE ISBN REMOVE ENDS */
+
+
+        
+    }
+
+    
+    //THIS IS FOR THE CUSTOMER LIST 
+$query="SELECT Title,b.ISBN From BOOK b join ORDER_TBL OT on b.ISBN = OT.ISBN where CardNumber = $CustomerID;";
 $result = mysqli_query($conn,$query);
 if (mysqli_error($conn)) 
 	{die("MySQL error: ".mysqli_error($conn));} 
@@ -213,9 +286,11 @@ if (mysqli_error($conn))
 
 
         while($row = mysqli_fetch_assoc($result)) {
-            $myBook = $row['Title'];
+            $myBook = $row['ISBN'];
+            
+            
             echo   "<ul><li>
-            <a href='Patron.html'> ".$row["Title"]."</a>
+            <a href='?ISBN=".$row["ISBN"]."&Method=Delete'>".$row['Title']."</a>
             </li>";
     
             echo "</ul>";
@@ -224,7 +299,6 @@ if (mysqli_error($conn))
 }
 
 
-{    echo "No books with $ESCpetname found!.";   }
 
 // Always remember to close the connection to the database when you're done!
 mysqli_close($conn);
