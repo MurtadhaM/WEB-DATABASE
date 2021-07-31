@@ -5,20 +5,22 @@
 <head>
     <style>
         html {
+            margin-left: 50%;
             display: block;
             margin: 0;
             padding: 0;
         }
         
-        section {
+        body {
             margin-left: 50%;
         }
+        
+        section {}
         
         h1,
         h2,
         form {
             display: block;
-            align: center;
         }
         
         input {
@@ -26,7 +28,6 @@
             padding: 30px, 30px;
             padding-bottom: 5px;
             margin-bottom: 40px;
-            margin-left: -100px;
         }
     </style>
     <title> Library Book Lookup </title>
@@ -34,20 +35,30 @@
 
 <body>
 
+    <a style=" 
+    
+    " href="Patron.html">
 
-    <h1 style="text-align:center;"> Patron Web Services </h1>
+        <button style="background-color: #4CAF50; 
+            border: none;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    "> Back to Patron's Menu  </button>
+
+    </a>
+
+    <h1> Patron Web Services </h1>
 
     <form method="POST" action="BookLookup.php">
 
 
-        <h2 style="text-align:center;"> Find a Book </h2>
 
-        <h1 style="text-align:center;"> Search Book </h1>
+        <h1>Search Book </h1>
 
-        <section class="TextBox" style="background-color: white; 
-        border: none;
-        color: black;
-        text-align: center;">
+        <section class="TextBox">
 
             <input type="text" name="bookname" maxlength="50"></section>
 
@@ -57,12 +68,9 @@
         border: none;
         color: white;
         padding: 15px 32px;
-        text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin-left:50%;
-        margin-left:45%;
 
         "> Search Books Catalog </button>
 
@@ -72,18 +80,7 @@
     </form>
 
 
-    <a style="background-color: #4CAF50; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin:  32px;
-    margin-left:45%;
-    
-    " href="Patron.html">Return to main menu</a>
+
 
 </body>
 
