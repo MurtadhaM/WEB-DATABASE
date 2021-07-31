@@ -37,7 +37,53 @@ table ,td, th {
   .tableNames{
       color:red;
   }
+a{
 
+    
+}
+a:clicked{
+  
+}
+
+
+li {
+    font-size: 20px;
+  padding-left: 12px;
+        display: block;
+
+        list-style: none;
+        cursor: pointer;
+        text-align: center;
+    }
+    
+    a:hover {
+        font-size: 23px;
+        color: darkmagenta;
+    }
+    
+    li:nth-child(even) {
+        color: green;
+    }
+    
+    a:link {
+        text-decoration: none;
+    }
+    
+    a:visited {
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: none;
+    }
+    
+    a:active {
+        text-decoration: none;
+    }
+    
+    a {
+        color: #00a;
+    }
 </style>
 
 <a style="  margin-left:44%; 
@@ -101,12 +147,12 @@ if($Method==="ADD"){
     $query="SET FOREIGN_KEY_CHECKS=1;";
     mysqli_query($conn,$query);
 
-    echo "Book Added!";
+    echo "<a><li>ADDED the book</li> </a>";
 $result = mysqli_query($conn,$query);
 
 if (mysqli_error($conn)) 
 	{die("MySQL error: ".mysqli_error($conn));}
-    echo "ADDED A BOOK";
+    //echo "ADDED A BOOK";
     exit();
 
 
@@ -190,7 +236,7 @@ if($ISBN>0 && $Method==="Delete"){
     $query="SET FOREIGN_KEY_CHECKS=1;";
     mysqli_query($conn,$query);
 
-    echo "Book Deleted!";
+    echo "<a><li>Deleted the book</li> </;>";
     exit();
 
 } 
@@ -266,7 +312,7 @@ if (mysqli_error($conn))
 
 
         while($row = mysqli_fetch_assoc($result)) {
-           echo "Deleted the book";
+           echo "<a>Deleted the book</a>";
         }
     }
 
@@ -290,7 +336,7 @@ if (mysqli_error($conn))
             
             
             echo   "<ul><li>
-            <a href='?ISBN=".$row["ISBN"]."&Method=Delete'>".$row['Title']."</a>
+            <a   href='?ISBN=".$row["ISBN"]."&Method=Delete'>".$row['Title']."</a>
             </li>";
     
             echo "</ul>";
